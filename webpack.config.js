@@ -29,4 +29,7 @@ module.exports = {
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
     ]
   },
+  stats: {
+    warningsFilter: [/Failed to parse source map/],
+  },
 };

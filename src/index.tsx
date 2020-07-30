@@ -1,17 +1,22 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import { Synth } from '../node_modules/tone/build/esm/instrument/Synth';
 
 class RootTest extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
+        this.test = this.test.bind(this);
+    }
+
+    private test(event: React.MouseEvent): void {
+        const synth = new Synth().toDestination();
+        synth.triggerAttackRelease("C4", "8n");
     }
 
     render() {
-
         return (
             <div>
-                <h1>{this.props.content}</h1>
-                <h2>Test react</h2>
+                <button onClick={this.test}>play audio</button>
             </div>
         )
     }
