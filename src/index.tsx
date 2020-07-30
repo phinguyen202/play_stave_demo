@@ -8,8 +8,9 @@ class RootTest extends React.Component<any, any> {
         this.test = this.test.bind(this);
     }
 
-    private test(event: React.MouseEvent): void {
+    private async test(event: React.MouseEvent): Promise<any> {
         const synth = new Synth().toDestination();
+        await synth.context.resume();
         synth.triggerAttackRelease("C4", "8n");
     }
 
