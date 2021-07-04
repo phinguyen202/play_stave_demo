@@ -26,7 +26,8 @@
     "@types/react-dom": "^16.9.8",
     "react": "^16.13.1",
     "tone": "^14.7.39",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "verovio": "^3.4.1"
   },
   "devDependencies": {
     "@types/react": "^16.9.43",

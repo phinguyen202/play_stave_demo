@@ -1,11 +1,23 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { Synth } from '../node_modules/tone/build/esm/instrument/Synth';
+import verovio from 'verovio';
 
 class RootTest extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.test = this.test.bind(this);
+
+        verovio.module.onRuntimeInitialized = function () {
+            /* create the toolkit instance */
+            var vrvToolkit = new verovio.toolkit();
+            fetch("https://www.verovio.org/examples/downloads/Schubert_Lindenbaum.mei")
+                .then((response) => response.text())
+                .then((meiXML) => {
+                    let svg = vrvToolkit.renderData(meiXML, {});
+                    document.getElementById("notation").innerHTML = svg;
+                });
+        }
     }
 
     private async test(event: React.MouseEvent): Promise<any> {
@@ -16,9 +28,12 @@ class RootTest extends React.Component<any, any> {
 
     render() {
         return (
+            <>
             <div>
                 <button onClick={this.test}>play audio</button>
             </div>
+            <div id="notation "></div>
+            </>
         )
     }
 }
